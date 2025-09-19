@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fruchelab 🍓🍊</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      scroll-behavior: smooth;
+      color: #333;
+    }
+
+    /* Navbar */
+    header {
+      background: linear-gradient(to right, #ff4b2b, #ff416c);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+      color: white;
+      font-size: 24px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffe082;
+    }
+
+    /* Secciones */
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px 60px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+
+    /* Inicio */
+    #inicio {
+      background: url("https://blogger.googleusercontent.com/img/a/AVvXsEihecUggF61AOLe4UZSk_HNZUAqoSN45YDj8osqEx23oB-QhMgvrzs9UBF9LrohjotMAEnChZyWsCqJla9BlhnOLhg3D-TnmfKmPZQ7Cpe76kXeTiyN6xp5kp8eFgjmnhm9p62qpoGjKEFYqYAc7GV7yvfSFbNHyHN0qJO2cWIrIPfNmKRpgE3BWnqoFSE") 
+                  no-repeat center center;
+      background-size: contain;
+      background-color: #ff6f61;
+      position: relative;
+    }
+
+    #inicio .contenido {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 40px;
+      border-radius: 15px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    #inicio h2 {
+      font-size: 48px;
+      margin-bottom: 15px;
+      background: linear-gradient(270deg, #ff4b2b, #ff416c, #ff9a8b, #ff6a88);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 300% 300%;
+      animation: gradientText 8s ease infinite;
+    }
+
+    #inicio p {
+      font-size: 22px;
+      color: #fff;
+    }
+
+    #inicio::after {
+      content: "";
+      background: url("https://blogger.googleusercontent.com/img/a/AVvXsEg6z9J3fOHpW9oBqh87jNz6zvLYyIuOmzNk0-Q00WqgFUDmd2ST1mGB-zey01HbpFoHPKGYVG2rZxZNYjfO_q3zRNV6GeaxkA5fKOaUwra-H8irFNSsdUbmBr4UkYWmq-v_NrJr2y7P3cBW0W5jnwi8SfES0yW7e9Kutfw0Ta_I0Tmz4fWht8ZD1yP7cyE") 
+                  no-repeat center center;
+      background-size: 120px;
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 120px;
+      height: 120px;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    /* Pedido */
+    #pedido {
+      background: linear-gradient(135deg, #ff416c, #ff4b2b, #ff9a8b);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    #pedido h2 {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    #pedido p {
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+
+    .btn-pedido {
+      display: inline-block;
+      background: white;
+      color: #ff416c;
+      padding: 14px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .btn-pedido:hover {
+      transform: scale(1.08);
+      background: #ffe082;
+      color: #ff4b2b;
+    }
+
+    /* Producto */
+    #producto {
+      background: url("https://blogger.googleusercontent.com/img/a/AVvXsEjcgOAeNmR1M6_XK7D3-rRdaBMSERT64VxIveiie_IsUBrddxWEbSeobPO9OutENPe3S8I1vt1avQGFb7EDZp6Mu47S-byNUgDJa3LjAXOZ5loWy1aEzuMn2w93U6SJhPgh-QYC40SIGi8r8x6Mcjnh-umR1sNk9YmtCY4kiXxyEGTGDMTHT2-ib7Ib2XU") 
+                  no-repeat center center/cover;
+      position: relative;
+      color: white;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+    }
+
+    #producto::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 65, 108, 0.6);
+      z-index: 0;
+    }
+
+    #producto h2, #producto p, #producto .cards {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, rgba(255,75,43,0.9), rgba(255,65,108,0.9));
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+      width: 250px;
+      transition: transform 0.3s ease;
+      color: white;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    /* Precios */
+    #precios {
+      background: linear-gradient(135deg, #ff9a8b, #ff6a88, #ff99ac);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .precio-card {
+      background: white;
+      color: #ff416c;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      animation: pulse 3s infinite;
+    }
+
+    .precio-card h3 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .precio-card p {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ff4b2b;
+    }
+
+    /* Nosotros */
+    #nosotros {
+      background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fcb69f, #ffdde1);
+    }
+
+    #nosotros p {
+      font-size: 20px;
+    }
+
+    /* Contacto */
+    #contacto {
+      background: linear-gradient(-45deg, #ff6f91, #ff9671, #ffc75f, #f9f871);
+    }
+
+    .contact-info {
+      margin: 20px 0;
+      font-size: 18px;
+      text-align: left;
+      max-width: 600px;
+    }
+
+    .formulario {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+      max-width: 500px;
+      margin: 20px auto;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    form input, form textarea {
+      margin-bottom: 15px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    form button {
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      border: none;
+      padding: 12px;
+      color: white;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    form button:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes gradientText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🍓 Fruchelab 🍊</h1>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#pedido">Pedido</a>
+      <a href="#producto">Producto</a>
+      <a href="#precios">Precios</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#video">Video</a>
+    </nav>
+  </header>
+
+  <!-- Inicio -->
+  <section id="inicio">
+    <div class="contenido">
+      <h2>¡Bienvenidos a Fruchelab!</h2>
+      <p>Refresca tu día con las más deliciosas y naturales frucheladas</p>
+    </div>
+  </section>
+
+  <!-- Pedido -->
+  <section id="pedido">
+    <h2>🛒 Haz tu Pedido</h2>
+    <p>¿Se te antojó una fruchelada? 😍 <br>
+       Escríbenos en <b>Instagram</b> y pide la tuya al instante 🍓🍊</p>
+    <a href="https://www.instagram.com/fruchelab" target="_blank" class="btn-pedido">
+      ✨ Pedir mi Fruchelada en Instagram ✨
+    </a>
+  </section>
+
+  <!-- Producto -->
+  <section id="producto">
+    <h2>Nuestro Producto</h2>
+    <p>Nuestra fruchelada está hecha con agua de flor de jamaica 🌺, y puedes personalizarla con los mejores toppings:</p>
+    <div class="cards">
+      <div class="card">
+        <h3>🍬 Paleta de Besitos</h3>
+        <p>Un toque dulce irresistible.</p>
+      </div>
+      <div class="card">
+        <h3>🌶️ Tajín</h3>
+        <p>Perfecto para los que aman lo picante.</p>
+      </div>
+      <div class="card">
+        <h3>🍓 Fresas</h3>
+        <p>Frescura natural y deliciosa.</p>
+      </div>
+      <div class="card">
+        <h3>🥫 Chamoy</h3>
+        <p>Un clásico que no puede faltar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Precios -->
+  <section id="precios">
+    <h2>💰 Nuestros Precios</h2>
+    <div class="precio-card">
+      <h3>🥤 Fruchelada</h3>
+      <p>$6.000 COP</p>
+    </div>
+  </section>
+
+  <!-- Nosotros -->
+  <section id="nosotros">
+    <h2>Sobre Nosotros</h2>
+    <p>Somos un emprendimiento creado con el propósito de ofrecer una bebida refrescante, única y natural.  
+       Nuestras frucheladas son hechas con agua de flor de jamaica 🌺 y mucho amor 💕,  
+       acompañadas de toppings que las hacen irresistibles.</p>
+  </section>
+
+  <!-- Video Publicitario -->
+  <section id="video">
+    <h2>Video Publicitario</h2>
+    <video controls width="640">
+     <source src="Fruchelab.mp4" type="video/mp4">
+     Tu navegador no soporta el elemento de video.
+  </video>
+</section>
+
+
+  <!-- Contacto -->
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <div class="contact-info">
+      <p><b>📍 Ubicación:</b> Feria Empresarial Barrio Estero, Colegio Alberto Lleras Camargo</p>
+      <p><b>📞 Teléfonos:</b> +57 310 8286277 | +57 313 8696192</p>
+      <p><b>📧 Email:</b> contacto@fruchelab.com</p>
+    </div>
+
+    <div class="formulario">
+      <h3>Escríbenos</h3>
+      <form>
+        <input type="text" placeholder="Tu nombre" required>
+        <input type="email" placeholder="Tu correo" required>
+        <textarea rows="5" placeholder="Tu mensaje" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Fruchelab - Todos los derechos reservados</p>
+  </footer>
+
+</body>
+</html>
